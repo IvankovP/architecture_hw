@@ -1,14 +1,13 @@
 package space.battle.core.support;
 
+import space.battle.core.entity.UObject;
 import space.battle.core.movement.Movable;
-
-import java.util.Map;
 
 public class MoveAdapter implements Movable {
 
-    private final Map<String, Object> movableObject;
+    private final UObject movableObject;
 
-    public MoveAdapter(Map<String, Object> movableObject) {
+    public MoveAdapter(UObject movableObject) {
         this.movableObject = movableObject;
     }
 
@@ -24,12 +23,20 @@ public class MoveAdapter implements Movable {
 
     @Override
     public void setPosition(Vector newPosition) {
-        movableObject.put("position", newPosition);
+        if (!isMovable(movableObject)) {
+            throw new UnsupportedOperationException();
+        }
+        movableObject.setProperty("position", newPosition);
+    }
+
+    private boolean isMovable(UObject movableObject) {
+        return movableObject != null && Boolean.TRUE.equals(movableObject.getProperty("movable"));
     }
 
     private Object getProperty(String name) {
-        if (movableObject.containsKey(name)) {
-            return movableObject.get(name);
+        Object property = movableObject.getProperty(name);
+        if (property != null) {
+            return property;
         }
         throw new UnsupportedOperationException();
     }

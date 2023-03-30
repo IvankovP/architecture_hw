@@ -1,12 +1,12 @@
 package space.battle.core;
 
 import org.junit.jupiter.api.Test;
+import space.battle.core.entity.Ship;
+import space.battle.core.entity.Planet;
+import space.battle.core.entity.UObject;
 import space.battle.core.movement.Move;
 import space.battle.core.support.MoveAdapter;
 import space.battle.core.support.Vector;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,22 +14,25 @@ class MoveTest {
 
     @Test
     void moveTest() {
-        Map<String, Object> ship = new HashMap<>();
-        ship.put("position", new Vector(12, 5));
-        ship.put("velocity", new Vector(-7, 3));
+        UObject ship = new Ship();
+        ship.setProperty("movable", true);
+        ship.setProperty("position", new Vector(12, 5));
+        ship.setProperty("velocity", new Vector(-7, 3));
 
         MoveAdapter moveAdapter = new MoveAdapter(ship);
         Move move = new Move(moveAdapter);
         move.execute();
 
-        assertEquals(new Vector(5, 8), ship.get("position"));
+        assertEquals(new Vector(5, 8), ship.getProperty("position"));
     }
 
     @Test
     void errorGettingPositionTest() {
-        Map<String, Object> space = new HashMap<>();
+        UObject ship = new Ship();
+        ship.setProperty("movable", true);
+        ship.setProperty("velocity", new Vector(-7, 3));
 
-        MoveAdapter moveAdapter = new MoveAdapter(space);
+        MoveAdapter moveAdapter = new MoveAdapter(ship);
         Move move = new Move(moveAdapter);
 
         assertThrows(UnsupportedOperationException.class, move::execute);
@@ -37,8 +40,22 @@ class MoveTest {
 
     @Test
     void errorGettingVelocityTest() {
-        Map<String, Object> planet = new HashMap<>();
-        planet.put("position", new Vector(55, 11));
+        UObject ship = new Ship();
+        ship.setProperty("movable", true);
+        ship.setProperty("position", new Vector(12, 5));
+
+        MoveAdapter moveAdapter = new MoveAdapter(ship);
+        Move move = new Move(moveAdapter);
+
+        assertThrows(UnsupportedOperationException.class, move::execute);
+    }
+
+    @Test
+    void errorSettingPositionTest() {
+        UObject planet = new Planet();
+        planet.setProperty("movable", false);
+        planet.setProperty("position", new Vector(100, 100));
+        planet.setProperty("velocity", new Vector(0, 0));
 
         MoveAdapter moveAdapter = new MoveAdapter(planet);
         Move move = new Move(moveAdapter);
