@@ -14,20 +14,23 @@ public class MoveAdapter implements Movable {
 
     @Override
     public Vector getPosition() {
-        Object vector = movableObject.get("position");
-        if (vector == null) {
-            throw new UnsupportedOperationException();
-        }
-        return (Vector) vector;
+        return (Vector) getProperty("position");
     }
 
     @Override
     public Vector getVelocity() {
-        return (Vector) movableObject.get("velocity");
+        return (Vector) getProperty("velocity");
     }
 
     @Override
     public void setPosition(Vector newPosition) {
         movableObject.put("position", newPosition);
+    }
+
+    private Object getProperty(String name) {
+        if (movableObject.containsKey(name)) {
+            return movableObject.get(name);
+        }
+        throw new UnsupportedOperationException();
     }
 }

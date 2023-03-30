@@ -34,4 +34,15 @@ class MoveTest {
 
         assertThrows(UnsupportedOperationException.class, move::execute);
     }
+
+    @Test
+    void errorGettingVelocityTest() {
+        Map<String, Object> planet = new HashMap<>();
+        planet.put("position", new Vector(55, 11));
+
+        MoveAdapter moveAdapter = new MoveAdapter(planet);
+        Move move = new Move(moveAdapter);
+
+        assertThrows(UnsupportedOperationException.class, move::execute);
+    }
 }
