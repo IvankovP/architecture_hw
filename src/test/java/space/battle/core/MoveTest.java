@@ -8,7 +8,7 @@ import space.battle.core.support.Vector;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MoveTest {
 
@@ -23,5 +23,15 @@ class MoveTest {
         move.execute();
 
         assertEquals(new Vector(5, 8), ship.get("position"));
+    }
+
+    @Test
+    void errorGettingPositionTest() {
+        Map<String, Object> space = new HashMap<>();
+
+        MoveAdapter moveAdapter = new MoveAdapter(space);
+        Move move = new Move(moveAdapter);
+
+        assertThrows(UnsupportedOperationException.class, move::execute);
     }
 }

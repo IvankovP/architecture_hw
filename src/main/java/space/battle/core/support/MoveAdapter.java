@@ -14,7 +14,11 @@ public class MoveAdapter implements Movable {
 
     @Override
     public Vector getPosition() {
-        return (Vector) movableObject.get("position");
+        Object vector = movableObject.get("position");
+        if (vector == null) {
+            throw new UnsupportedOperationException();
+        }
+        return (Vector) vector;
     }
 
     @Override
