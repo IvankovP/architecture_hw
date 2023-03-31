@@ -17,6 +17,13 @@ public class FuelAdapter implements Fuelable {
         return (int) getProperty("fuel");
     }
 
+    @Override
+    public void burnFuel() {
+        int fuel = getFuel();
+        int burnFuelCount = (int) getProperty("burnFuelCount");
+        fuelableObject.setProperty("fuel", Math.max(0, fuel - burnFuelCount));
+    }
+
     private Object getProperty(String name) {
         Object property = fuelableObject.getProperty(name);
         if (property != null) {
