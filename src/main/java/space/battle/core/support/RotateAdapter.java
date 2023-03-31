@@ -23,11 +23,19 @@ public class RotateAdapter implements Rotable {
 
     @Override
     public int getAngularVelocity() {
-        return (int) rotableObject.getProperty("angularVelocity");
+        return (int) getProperty("angularVelocity");
     }
 
     @Override
     public int getDirectionSections() {
         return (int) rotableObject.getProperty("directionSections");
+    }
+
+    private Object getProperty(String name) {
+        Object property = rotableObject.getProperty(name);
+        if (property != null) {
+            return property;
+        }
+        throw new UnsupportedOperationException();
     }
 }
