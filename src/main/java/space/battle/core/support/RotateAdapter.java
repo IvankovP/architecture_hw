@@ -18,7 +18,14 @@ public class RotateAdapter implements Rotable {
 
     @Override
     public void setDirection(Direction newDirection) {
+        if (!isRotable(rotableObject)) {
+            throw new UnsupportedOperationException();
+        }
         rotableObject.setProperty("direction", newDirection);
+    }
+
+    private boolean isRotable(UObject rotableObject) {
+        return rotableObject != null && Boolean.TRUE.equals(rotableObject.getProperty("rotable"));
     }
 
     @Override

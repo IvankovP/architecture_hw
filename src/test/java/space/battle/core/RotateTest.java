@@ -79,4 +79,21 @@ class RotateTest {
 
         assertThrows(UnsupportedOperationException.class, rotate::execute);
     }
+
+    @Test
+    void errorSettingDirectionTest() {
+        UObject ship = new Ship();
+        ship.setProperty("movable", true);
+        ship.setProperty("rotable", false);
+        ship.setProperty("position", new Vector(12, 5));
+        ship.setProperty("velocity", new Vector(-7, 3));
+        ship.setProperty("angularVelocity", -1);
+        ship.setProperty("directionSections", 8);
+        ship.setProperty("direction", new Direction());
+
+        RotateAdapter rotateAdapter = new RotateAdapter(ship);
+        Rotate rotate = new Rotate(rotateAdapter);
+
+        assertThrows(UnsupportedOperationException.class, rotate::execute);
+    }
 }
