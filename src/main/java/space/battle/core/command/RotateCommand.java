@@ -1,11 +1,12 @@
-package space.battle.core.movement;
+package space.battle.core.command;
 
+import space.battle.core.movement.Rotable;
 import space.battle.core.support.Direction;
 
-public class Rotate {
+public class RotateCommand {
     private final Rotable rotableObject;
 
-    public Rotate(Rotable rotableObject) {
+    public RotateCommand(Rotable rotableObject) {
         this.rotableObject = rotableObject;
     }
 

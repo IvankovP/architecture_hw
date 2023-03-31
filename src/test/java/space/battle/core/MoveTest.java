@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import space.battle.core.entity.Ship;
 import space.battle.core.entity.Planet;
 import space.battle.core.entity.UObject;
-import space.battle.core.movement.Move;
-import space.battle.core.support.MoveAdapter;
+import space.battle.core.command.MoveCommand;
+import space.battle.core.adapter.MoveAdapter;
 import space.battle.core.support.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +20,7 @@ class MoveTest {
         ship.setProperty("velocity", new Vector(-7, 3));
 
         MoveAdapter moveAdapter = new MoveAdapter(ship);
-        Move move = new Move(moveAdapter);
+        MoveCommand move = new MoveCommand(moveAdapter);
         move.execute();
 
         assertEquals(new Vector(5, 8), ship.getProperty("position"));
@@ -33,7 +33,7 @@ class MoveTest {
         ship.setProperty("velocity", new Vector(-7, 3));
 
         MoveAdapter moveAdapter = new MoveAdapter(ship);
-        Move move = new Move(moveAdapter);
+        MoveCommand move = new MoveCommand(moveAdapter);
 
         assertThrows(UnsupportedOperationException.class, move::execute);
     }
@@ -45,7 +45,7 @@ class MoveTest {
         ship.setProperty("position", new Vector(12, 5));
 
         MoveAdapter moveAdapter = new MoveAdapter(ship);
-        Move move = new Move(moveAdapter);
+        MoveCommand move = new MoveCommand(moveAdapter);
 
         assertThrows(UnsupportedOperationException.class, move::execute);
     }
@@ -58,7 +58,7 @@ class MoveTest {
         planet.setProperty("velocity", new Vector(0, 0));
 
         MoveAdapter moveAdapter = new MoveAdapter(planet);
-        Move move = new Move(moveAdapter);
+        MoveCommand move = new MoveCommand(moveAdapter);
 
         assertThrows(UnsupportedOperationException.class, move::execute);
     }

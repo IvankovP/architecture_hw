@@ -1,7 +1,8 @@
-package space.battle.core.support;
+package space.battle.core.adapter;
 
 import space.battle.core.entity.UObject;
 import space.battle.core.movement.Rotable;
+import space.battle.core.support.Direction;
 
 public class RotateAdapter implements Rotable {
 

@@ -1,7 +1,8 @@
-package space.battle.core.support;
+package space.battle.core.adapter;
 
 import space.battle.core.entity.UObject;
 import space.battle.core.movement.Movable;
+import space.battle.core.support.Vector;
 
 public class MoveAdapter implements Movable {
 
