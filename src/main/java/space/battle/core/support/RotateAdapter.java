@@ -13,7 +13,7 @@ public class RotateAdapter implements Rotable {
 
     @Override
     public Direction getDirection() {
-        return (Direction) rotableObject.getProperty("direction");
+        return (Direction) getProperty("direction");
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RotateAdapter implements Rotable {
 
     @Override
     public int getDirectionSections() {
-        return (int) rotableObject.getProperty("directionSections");
+        return (int) getProperty("directionSections");
     }
 
     private Object getProperty(String name) {
