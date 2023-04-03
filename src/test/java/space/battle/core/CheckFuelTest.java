@@ -23,6 +23,7 @@ class CheckFuelTest {
         ship.setProperty("position", new Vector(12, 5));
         ship.setProperty("velocity", new Vector(-7, 3));
         ship.setProperty("fuel", 100);
+        ship.setProperty("burnFuelCount", 5);
 
         FuelAdapter fuelAdapter = new FuelAdapter(ship);
         CheckFuelCommand checkFuelCommand = new CheckFuelCommand(fuelAdapter);

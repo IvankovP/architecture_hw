@@ -6,10 +6,19 @@ import space.battle.core.movement.Fuelable;
 
 public class FuelAdapter implements Fuelable {
 
-    private UObject fuelableObject;
+    private final UObject fuelableObject;
 
     public FuelAdapter(UObject fuelableObject) {
         this.fuelableObject = fuelableObject;
+    }
+
+    @Override
+    public void checkFuel() {
+        int burnFuelCount = (int) getProperty("burnFuelCount");
+        int fuel = getFuel();
+        if (burnFuelCount <= 0 || fuel - burnFuelCount <= 0) {
+            throw new CommandException();
+        }
     }
 
     @Override

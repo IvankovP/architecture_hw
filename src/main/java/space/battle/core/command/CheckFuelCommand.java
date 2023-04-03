@@ -4,7 +4,7 @@ import space.battle.core.movement.Fuelable;
 
 public class CheckFuelCommand implements Command {
 
-    private Fuelable fuelableObject;
+    private final Fuelable fuelableObject;
 
     public CheckFuelCommand(Fuelable fuelableObject) {
         this.fuelableObject = fuelableObject;
@@ -12,6 +12,6 @@ public class CheckFuelCommand implements Command {
 
     @Override
     public void execute() {
-        fuelableObject.getFuel();
+        fuelableObject.checkFuel();
     }
 }
