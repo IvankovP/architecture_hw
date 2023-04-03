@@ -1,4 +1,6 @@
-package space.battle.core.command;
+package space.battle.core.command.macro;
+
+import space.battle.core.command.Command;
 
 import java.util.List;
 

@@ -2,10 +2,7 @@ package space.battle.core;
 
 import org.junit.jupiter.api.Test;
 import space.battle.core.adapter.FuelAdapter;
-import space.battle.core.adapter.MoveAdapter;
-import space.battle.core.command.CheckFuelCommand;
-import space.battle.core.command.MoveCommand;
-import space.battle.core.entity.Planet;
+import space.battle.core.command.action.CheckFuelCommand;
 import space.battle.core.entity.Ship;
 import space.battle.core.entity.UObject;
 import space.battle.core.exception.CommandException;
