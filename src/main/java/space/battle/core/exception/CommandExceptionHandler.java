@@ -26,6 +26,9 @@ public class CommandExceptionHandler implements ExceptionHandler {
     }
 
     private ExceptionHandler getHandler(Exception ex, Command command) {
+        if (!handlers.containsKey(command.getClass())) {
+            return null;
+        }
         return handlers.get(command.getClass()).get(ex.getClass());
     }
 }
