@@ -51,6 +51,6 @@ public class VelocityAdapter implements VelocityChangeable {
         if (property != null) {
             return property;
         }
-        throw new UnsupportedOperationException();
+        throw new CommandException();
     }
 }
