@@ -8,6 +8,7 @@ import fabric.sorting.SortingSelectObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -19,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class FabricTest {
 
     private final IoC<SortingObject> ioc = new IoC<>();
-    private final String in = "src/test/resources/in.txt";
-    private final String out = "src/test/resources/out.txt";
+    private final String in = Paths.get(System.getProperty("java.io.tmpdir")).toAbsolutePath() + "/in.txt";
+    private final String out = Paths.get(System.getProperty("java.io.tmpdir")).toAbsolutePath() + "/out.txt";
 
     @BeforeEach
     void before() {
