@@ -20,7 +20,7 @@ public class FileUtils {
             return;
         }
         try {
-            Files.createFile(path);
+            Files.createFile(path.toAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,7 +30,7 @@ public class FileUtils {
         String readString;
         List<String> result = new ArrayList<>();
 
-        try (BufferedReader bf = Files.newBufferedReader(source)) {
+        try (BufferedReader bf = Files.newBufferedReader(source.toAbsolutePath())) {
             while (result.size() < count && (readString = bf.readLine()) != null) {
                 result.add(readString);
             }
@@ -43,8 +43,8 @@ public class FileUtils {
 
     public static void writeFile(String s, Path path) {
         try {
-            Files.writeString(path, s, StandardOpenOption.APPEND);
-            Files.writeString(path, System.lineSeparator(), StandardOpenOption.APPEND);
+            Files.writeString(path.toAbsolutePath(), s, StandardOpenOption.APPEND);
+            Files.writeString(path.toAbsolutePath(), System.lineSeparator(), StandardOpenOption.APPEND);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -52,8 +52,8 @@ public class FileUtils {
 
     public static void writeRandomStrings(Path path) throws IOException {
         for (int i = 0; i < 100; i++) {
-            Files.writeString(path, randomString(), StandardOpenOption.APPEND);
-            Files.writeString(path, System.lineSeparator(), StandardOpenOption.APPEND);
+            Files.writeString(path.toAbsolutePath(), randomString(), StandardOpenOption.APPEND);
+            Files.writeString(path.toAbsolutePath(), System.lineSeparator(), StandardOpenOption.APPEND);
         }
     }
 
