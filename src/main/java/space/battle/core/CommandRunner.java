@@ -1,22 +1,22 @@
-package space.battle.core.command.macro;
+package space.battle.core;
 
 import space.battle.core.command.Command;
 import space.battle.core.exception.ExceptionHandler;
 
 import java.util.Queue;
 
-public class MacroCommandWithExceptionHandler implements Command {
+public class CommandRunner implements Runnable {
 
     private final Queue<Command> commands;
     ExceptionHandler handler;
 
-    public MacroCommandWithExceptionHandler(Queue<Command> commands, ExceptionHandler handler) {
+    public CommandRunner(Queue<Command> commands, ExceptionHandler handler) {
         this.commands = commands;
         this.handler = handler;
     }
 
     @Override
-    public void execute() {
+    public void run() {
         while (!commands.isEmpty()) {
             Command command = commands.poll();
             try {

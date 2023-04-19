@@ -8,7 +8,6 @@ import space.battle.core.command.Command;
 import space.battle.core.command.action.BurnFuelCommand;
 import space.battle.core.command.action.CheckFuelCommand;
 import space.battle.core.command.action.MoveCommand;
-import space.battle.core.command.macro.MacroCommandWithExceptionHandler;
 import space.battle.core.command.support.LogCommand;
 import space.battle.core.entity.Ship;
 import space.battle.core.entity.UObject;
@@ -64,8 +63,8 @@ class LogExceptionHandlerTest {
 
     @Test
     void logExceptionHandlerTest() {
-        MacroCommandWithExceptionHandler macroCommand = new MacroCommandWithExceptionHandler(commands, handler);
-        macroCommand.execute();
+        CommandRunner commandRunner = new CommandRunner(commands, handler);
+        commandRunner.run();
 
         assertEquals(new Vector(5, 8), moveAdapter.getPosition());
         assertEquals(95, fuelAdapter.getFuel());
@@ -78,8 +77,8 @@ class LogExceptionHandlerTest {
         LogCommandHandler mock = mock(LogCommandHandler.class);
         handlers.get(CheckFuelCommand.class).put(CommandException.class, mock);
 
-        MacroCommandWithExceptionHandler macroCommand = new MacroCommandWithExceptionHandler(commands, handler);
-        macroCommand.execute();
+        CommandRunner commandRunner = new CommandRunner(commands, handler);
+        commandRunner.run();
 
         verify(mock, atLeastOnce()).handle(any(), any());
     }

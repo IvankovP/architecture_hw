@@ -8,7 +8,6 @@ import space.battle.core.command.Command;
 import space.battle.core.command.action.BurnFuelCommand;
 import space.battle.core.command.action.CheckFuelCommand;
 import space.battle.core.command.action.MoveCommand;
-import space.battle.core.command.macro.MacroCommandWithExceptionHandler;
 import space.battle.core.command.support.LogCommand;
 import space.battle.core.command.support.RepeatCommand;
 import space.battle.core.command.support.RepeatSecondCommand;
@@ -80,8 +79,8 @@ class RepeatTwiceAndLogExceptionHandlerTest {
 
     @Test
     void repeatTwiceAndLogTest() {
-        MacroCommandWithExceptionHandler macroCommand = new MacroCommandWithExceptionHandler(commands, handler);
-        macroCommand.execute();
+        CommandRunner commandRunner = new CommandRunner(commands, handler);
+        commandRunner.run();
 
         assertEquals(0, commands.size());
     }
@@ -91,8 +90,8 @@ class RepeatTwiceAndLogExceptionHandlerTest {
         RepeatCommandHandler mock = mock(RepeatCommandHandler.class);
         handlers.get(CheckFuelCommand.class).put(CommandException.class, mock);
 
-        MacroCommandWithExceptionHandler macroCommand = new MacroCommandWithExceptionHandler(commands, handler);
-        macroCommand.execute();
+        CommandRunner commandRunner = new CommandRunner(commands, handler);
+        commandRunner.run();
 
         verify(mock, atLeastOnce()).handle(any(), any());
     }
@@ -102,8 +101,8 @@ class RepeatTwiceAndLogExceptionHandlerTest {
         RepeatSecondCommandHandler mock = mock(RepeatSecondCommandHandler.class);
         handlers.get(RepeatCommand.class).put(CommandException.class, mock);
 
-        MacroCommandWithExceptionHandler macroCommand = new MacroCommandWithExceptionHandler(commands, handler);
-        macroCommand.execute();
+        CommandRunner commandRunner = new CommandRunner(commands, handler);
+        commandRunner.run();
 
         verify(mock, atLeastOnce()).handle(any(), any());
     }
@@ -113,8 +112,8 @@ class RepeatTwiceAndLogExceptionHandlerTest {
         LogCommandHandler mock = mock(LogCommandHandler.class);
         handlers.get(RepeatSecondCommand.class).put(CommandException.class, mock);
 
-        MacroCommandWithExceptionHandler macroCommand = new MacroCommandWithExceptionHandler(commands, handler);
-        macroCommand.execute();
+        CommandRunner commandRunner = new CommandRunner(commands, handler);
+        commandRunner.run();
 
         verify(mock, atLeastOnce()).handle(any(), any());
     }
