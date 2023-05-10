@@ -8,7 +8,7 @@ import java.util.Queue;
 public class CommandRunner implements Runnable {
 
     private final Queue<Command> commands;
-    ExceptionHandler handler;
+    private final ExceptionHandler handler;
 
     public CommandRunner(Queue<Command> commands, ExceptionHandler handler) {
         this.commands = commands;

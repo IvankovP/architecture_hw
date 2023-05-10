@@ -16,7 +16,7 @@ public class FuelAdapter implements Fuelable {
     public void checkFuel() {
         int burnFuelCount = (int) getProperty("burnFuelCount");
         int fuel = getFuel();
-        if (burnFuelCount <= 0 || fuel - burnFuelCount <= 0) {
+        if (burnFuelCount <= 0 || fuel - burnFuelCount < 0) {
             throw new CommandException("Error check fuel");
         }
     }
@@ -31,6 +31,7 @@ public class FuelAdapter implements Fuelable {
         int fuel = getFuel();
         int burnFuelCount = (int) getProperty("burnFuelCount");
         fuelableObject.setProperty("fuel", Math.max(0, fuel - burnFuelCount));
+        System.out.println(fuelableObject.getProperty("fuel"));
     }
 
     private Object getProperty(String name) {
