@@ -12,6 +12,6 @@ public class LogCommand implements Command {
 
     @Override
     public void execute() {
-        System.out.println(exception == null ? "Unknown exception" : exception.getMessage());
+        System.out.println(exception == null || exception.getMessage() == null || exception.getMessage().isBlank() ? "Unknown exception" : exception.getMessage());
     }
 }
