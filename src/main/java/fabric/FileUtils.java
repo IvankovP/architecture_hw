@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileUtils {
@@ -59,5 +60,25 @@ public class FileUtils {
 
     private static String randomString() {
         return RandomStringUtils.randomAlphabetic(10);
+    }
+
+    public static void writeMatrix(Path path, int count) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 1; i <= count; i++) {
+            for (int j = 0; j < count; j++) {
+                stringBuilder.append(i + j);
+                if (j < count-1) {
+                    stringBuilder.append(", ");
+                }
+            }
+            stringBuilder.append(System.lineSeparator());
+        }
+        writeFile(stringBuilder.toString(), path);
+    }
+
+    public static void writeMatrix(Path path, int[][] matrix) {
+        for (int[] ints : matrix) {
+            writeFile(Arrays.toString(ints).replace("[", "").replace("]", ""), path);
+        }
     }
 }
