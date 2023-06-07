@@ -9,17 +9,19 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.function.Supplier;
 
-public class CommandThreadRunner implements Runnable {
+public class Game implements Runnable {
 
     public CountDownLatch countDownLatch;
     private final BlockingQueue<Command> commands;
     private final ExceptionHandler handler;
     private Supplier<Boolean> stoppedFunction;
     private Thread currentThread;
+    private final int id;
 
-    public CommandThreadRunner(BlockingQueue<Command> commands, ExceptionHandler handler) {
+    public Game(BlockingQueue<Command> commands, ExceptionHandler handler, int id) {
         this.commands = commands;
         this.handler = handler;
+        this.id = id;
     }
 
     public void setStoppedFunction(Supplier<Boolean> stoppedFunction) {
