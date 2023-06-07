@@ -4,12 +4,13 @@ import space.battle.core.command.Command;
 import space.battle.core.exception.ExceptionHandler;
 import space.battle.core.utils.ThreadUtils;
 
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.function.Supplier;
 
-public class CommandThreadRunner implements Runnable {
+public class Game implements Runnable {
 
     public CountDownLatch countDownLatch;
     private final BlockingQueue<Command> commands;
@@ -17,11 +18,13 @@ public class CommandThreadRunner implements Runnable {
     private Supplier<Boolean> stoppedFunction;
     private Thread currentThread;
     private final int id;
+    private final List<String> userNames;
 
-    public CommandThreadRunner(BlockingQueue<Command> commands, ExceptionHandler handler, int id) {
+    public Game(BlockingQueue<Command> commands, ExceptionHandler handler, int id, List<String> userNames) {
         this.commands = commands;
         this.handler = handler;
         this.id = id;
+        this.userNames = userNames;
     }
 
     public void setStoppedFunction(Supplier<Boolean> stoppedFunction) {
@@ -42,6 +45,14 @@ public class CommandThreadRunner implements Runnable {
 
     public Thread getCurrentThread() {
         return currentThread;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public List<String> getUserNames() {
+        return userNames;
     }
 
     @Override

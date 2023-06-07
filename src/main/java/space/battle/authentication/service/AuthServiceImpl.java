@@ -10,7 +10,7 @@ import java.util.UUID;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    public final static String JWT_ISSUER = "auth-service";
+    public static final String JWT_ISSUER = "auth-service";
     private final Algorithm algorithm = Algorithm.HMAC256(JWT_ISSUER);
 
     @Override

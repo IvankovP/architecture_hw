@@ -1,19 +1,19 @@
 package space.battle.core.command.action;
 
-import space.battle.core.CommandThreadRunner;
+import space.battle.core.Game;
 import space.battle.core.command.Command;
 
 public class HardStopCommand implements Command {
 
-    private final CommandThreadRunner runner;
+    private final Game game;
 
-    public HardStopCommand(CommandThreadRunner runner) {
-        this.runner = runner;
+    public HardStopCommand(Game game) {
+        this.game = game;
     }
 
     @Override
     public void execute() {
-        runner.setStoppedFunction(() -> false);
+        game.setStoppedFunction(() -> false);
         System.out.println("Hard stop...");
     }
 }
