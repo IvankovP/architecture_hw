@@ -16,10 +16,12 @@ public class CommandThreadRunner implements Runnable {
     private final ExceptionHandler handler;
     private Supplier<Boolean> stoppedFunction;
     private Thread currentThread;
+    private final int id;
 
-    public CommandThreadRunner(BlockingQueue<Command> commands, ExceptionHandler handler) {
+    public CommandThreadRunner(BlockingQueue<Command> commands, ExceptionHandler handler, int id) {
         this.commands = commands;
         this.handler = handler;
+        this.id = id;
     }
 
     public void setStoppedFunction(Supplier<Boolean> stoppedFunction) {
