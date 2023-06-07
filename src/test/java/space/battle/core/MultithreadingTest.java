@@ -31,7 +31,7 @@ class MultithreadingTest {
         BlockingQueue<Command> commandsForNewThread = new LinkedBlockingQueue<>();
 
         CommandExceptionHandler handler = createHandlers(commands, commandsForNewThread);
-        CommandThreadRunner threadCommandRunner = getCommandThreadRunner(commandsForNewThread, handler);
+        Game threadCommandRunner = getCommandThreadRunner(commandsForNewThread, handler, 1);
 
         addStartCommand(commands, threadCommandRunner);
         MacroCommand macroCommand = getMacroCommand();
@@ -57,7 +57,7 @@ class MultithreadingTest {
         BlockingQueue<Command> commandsForNewThread = new LinkedBlockingQueue<>();
 
         CommandExceptionHandler handler = createHandlers(commands, commandsForNewThread);
-        CommandThreadRunner threadCommandRunner = getCommandThreadRunner(commandsForNewThread, handler);
+        Game threadCommandRunner = getCommandThreadRunner(commandsForNewThread, handler, 1);
 
         addStartCommand(commands, threadCommandRunner);
         MacroCommand macroCommand = getMacroCommand();
@@ -86,7 +86,7 @@ class MultithreadingTest {
         BlockingQueue<Command> commandsForNewThread = new LinkedBlockingQueue<>();
 
         CommandExceptionHandler handler = createHandlers(commands, commandsForNewThread);
-        CommandThreadRunner threadCommandRunner = getCommandThreadRunner(commandsForNewThread, handler);
+        Game threadCommandRunner = getCommandThreadRunner(commandsForNewThread, handler, 1);
 
         addStartCommand(commands, threadCommandRunner);
         MacroCommand macroCommand = getMacroCommand();
@@ -109,12 +109,12 @@ class MultithreadingTest {
         assertEquals(0, commandsForNewThread.size());
     }
 
-    private CommandThreadRunner getCommandThreadRunner(BlockingQueue<Command> commandsForNewThread, CommandExceptionHandler handler) {
-        CommandThreadRunner threadCommandRunner = new CommandThreadRunner(commandsForNewThread, handler);
-        threadCommandRunner.setStoppedFunction(() -> !threadCommandRunner.getCommands().isEmpty());
-        threadCommandRunner.setCountDownLatch(new CountDownLatch(2));
+    private Game getCommandThreadRunner(BlockingQueue<Command> commandsForNewThread, CommandExceptionHandler handler, int id) {
+        Game game = new Game(commandsForNewThread, handler, id);
+        game.setStoppedFunction(() -> !game.getCommands().isEmpty());
+        game.setCountDownLatch(new CountDownLatch(2));
 
-        return threadCommandRunner;
+        return game;
     }
 
     private void start(BlockingQueue<Command> commands, CommandExceptionHandler handler) {
@@ -122,7 +122,7 @@ class MultithreadingTest {
         mainCommandRunner.run();
     }
 
-    private void addStartCommand(BlockingQueue<Command> commands, CommandThreadRunner threadCommandRunner) {
+    private void addStartCommand(BlockingQueue<Command> commands, Game threadCommandRunner) {
         RunNewThreadCommand runNewThreadCommand = new RunNewThreadCommand(threadCommandRunner);
         try {
             commands.put(runNewThreadCommand);

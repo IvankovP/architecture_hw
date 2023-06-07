@@ -1,13 +1,13 @@
 package space.battle.core.command.action;
 
-import space.battle.core.CommandThreadRunner;
+import space.battle.core.Game;
 import space.battle.core.command.Command;
 
 public class HardStopCommand implements Command {
 
-    private final CommandThreadRunner runner;
+    private final Game runner;
 
-    public HardStopCommand(CommandThreadRunner runner) {
+    public HardStopCommand(Game runner) {
         this.runner = runner;
     }
 
