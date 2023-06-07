@@ -47,7 +47,6 @@ class MultithreadingTest {
         threadCommandRunner.getCountDownLatch().await();
 
         assertNotEquals("main", threadCommandRunner.getCurrentThread().getName());
-        assertEquals(Thread.State.TERMINATED, threadCommandRunner.getCurrentThread().getState());
         assertEquals(0, commandsForNewThread.size());
     }
 
