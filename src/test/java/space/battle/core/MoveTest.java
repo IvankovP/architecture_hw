@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import space.battle.core.entity.Ship;
 import space.battle.core.entity.Planet;
 import space.battle.core.entity.UObject;
-import space.battle.core.command.MoveCommand;
+import space.battle.core.command.action.MoveCommand;
 import space.battle.core.adapter.MoveAdapter;
 import space.battle.core.support.Vector;
 

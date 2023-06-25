@@ -17,7 +17,7 @@ public class FuelAdapter implements Fuelable {
         int burnFuelCount = (int) getProperty("burnFuelCount");
         int fuel = getFuel();
         if (burnFuelCount <= 0 || fuel - burnFuelCount <= 0) {
-            throw new CommandException();
+            throw new CommandException("Error check fuel");
         }
     }
 
@@ -38,6 +38,6 @@ public class FuelAdapter implements Fuelable {
         if (property != null) {
             return property;
         }
-        throw new CommandException();
+        throw new CommandException("Error get parameter " + name);
     }
 }

@@ -1,5 +1,6 @@
-package space.battle.core.command;
+package space.battle.core.command.action;
 
+import space.battle.core.command.Command;
 import space.battle.core.movement.Rotable;
 import space.battle.core.support.Direction;
 

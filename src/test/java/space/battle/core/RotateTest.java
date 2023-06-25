@@ -6,7 +6,7 @@ import space.battle.core.adapter.VelocityAdapter;
 import space.battle.core.command.ChangeVelocityCommand;
 import space.battle.core.entity.Ship;
 import space.battle.core.entity.UObject;
-import space.battle.core.command.RotateCommand;
+import space.battle.core.command.action.RotateCommand;
 import space.battle.core.support.Direction;
 import space.battle.core.adapter.RotateAdapter;
 import space.battle.core.support.Vector;
