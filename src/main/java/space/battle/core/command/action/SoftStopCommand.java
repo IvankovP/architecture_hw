@@ -5,15 +5,15 @@ import space.battle.core.command.Command;
 
 public class SoftStopCommand implements Command {
 
-    private final Game runner;
+    private final Game game;
 
-    public SoftStopCommand(Game runner) {
-        this.runner = runner;
+    public SoftStopCommand(Game game) {
+        this.game = game;
     }
 
     @Override
     public void execute() {
-        runner.setStoppedFunction(() -> !runner.getCommands().isEmpty());
+        game.setStoppedFunction(() -> !game.getCommands().isEmpty());
         System.out.println("Soft stop...");
     }
 }

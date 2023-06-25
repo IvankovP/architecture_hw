@@ -1,5 +1,6 @@
 package space.battle.core.websocket;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -9,6 +10,7 @@ import space.battle.core.Game;
 import space.battle.core.IoC;
 import space.battle.core.command.Command;
 import space.battle.core.command.support.InterpretCommand;
+import space.battle.core.service.GameService;
 
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
@@ -17,10 +19,12 @@ import java.util.concurrent.locks.ReentrantLock;
 public class CustomWebSocketHandler extends TextWebSocketHandler {
 
     private final ObjectMapper objectMapper;
-    private ReentrantLock lock = new ReentrantLock();
+    private final ReentrantLock lock = new ReentrantLock();
+    private final GameService gameService;
 
-    public CustomWebSocketHandler(ObjectMapper objectMapper) {
+    public CustomWebSocketHandler(ObjectMapper objectMapper, GameService gameService) {
         this.objectMapper = objectMapper;
+        this.gameService = gameService;
     }
 
     @Override
@@ -35,6 +39,7 @@ public class CustomWebSocketHandler extends TextWebSocketHandler {
         try {
             param = objectMapper.readValue(message.getPayload(), HashMap.class);
             commandArgs = objectMapper.readValue(param.get("commandArgs"), HashMap.class);
+            validateToken(param);
         } finally {
             lock.unlock();
         }
@@ -44,6 +49,10 @@ public class CustomWebSocketHandler extends TextWebSocketHandler {
 
         // Отправка ответа клиенту
         session.sendMessage(new TextMessage("Received message: " + message.getPayload()));
+    }
+
+    private void validateToken(HashMap<String, String> param) {
+        gameService.validateToken(param.get("token"));
     }
 
     private void addCommandToGame(HashMap<String, String> param, Command command) {

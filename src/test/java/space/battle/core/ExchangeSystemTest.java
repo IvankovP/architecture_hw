@@ -11,6 +11,7 @@ import space.battle.core.entity.UObject;
 import space.battle.core.exception.CommandExceptionHandler;
 import space.battle.core.support.Vector;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -33,7 +34,7 @@ class ExchangeSystemTest {
 
     private Game createGame(int id) {
         LinkedBlockingQueue<Command> commands = new LinkedBlockingQueue<>();
-        Game game = new Game(commands, new CommandExceptionHandler(commands, new HashMap<>()), id);
+        Game game = new Game(commands, new CommandExceptionHandler(commands, new HashMap<>()), id, Collections.emptyList());
         game.setStoppedFunction(() -> !game.getCommands().isEmpty());
         return game;
     }
