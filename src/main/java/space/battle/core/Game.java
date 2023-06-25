@@ -13,12 +13,12 @@ import java.util.function.Supplier;
 public class Game implements Runnable {
 
     public CountDownLatch countDownLatch;
-    private final BlockingQueue<Command> commands;
-    private final ExceptionHandler handler;
-    private Supplier<Boolean> stoppedFunction;
-    private Thread currentThread;
-    private final int id;
-    private final List<String> userNames;
+    protected final BlockingQueue<Command> commands;
+    protected final ExceptionHandler handler;
+    protected Supplier<Boolean> stoppedFunction;
+    protected Thread currentThread;
+    protected final int id;
+    protected final List<String> userNames;
 
     public Game(BlockingQueue<Command> commands, ExceptionHandler handler, int id, List<String> userNames) {
         this.commands = commands;
