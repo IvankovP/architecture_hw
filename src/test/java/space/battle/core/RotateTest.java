@@ -3,7 +3,7 @@ package space.battle.core;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import space.battle.core.adapter.VelocityAdapter;
-import space.battle.core.command.ChangeVelocityCommand;
+import space.battle.core.command.action.ChangeVelocityCommand;
 import space.battle.core.entity.Ship;
 import space.battle.core.entity.UObject;
 import space.battle.core.command.action.RotateCommand;

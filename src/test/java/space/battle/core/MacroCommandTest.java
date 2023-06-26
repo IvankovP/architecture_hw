@@ -6,7 +6,7 @@ import space.battle.core.adapter.FuelAdapter;
 import space.battle.core.adapter.MoveAdapter;
 import space.battle.core.adapter.RotateAdapter;
 import space.battle.core.adapter.VelocityAdapter;
-import space.battle.core.command.ChangeVelocityCommand;
+import space.battle.core.command.action.ChangeVelocityCommand;
 import space.battle.core.command.action.BurnFuelCommand;
 import space.battle.core.command.action.CheckFuelCommand;
 import space.battle.core.command.action.MoveCommand;

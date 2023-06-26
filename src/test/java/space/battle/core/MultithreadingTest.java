@@ -5,6 +5,8 @@ import space.battle.core.adapter.FuelAdapter;
 import space.battle.core.command.Command;
 import space.battle.core.command.action.*;
 import space.battle.core.command.macro.MacroCommand;
+import space.battle.core.command.support.HardStopCommand;
+import space.battle.core.command.support.SoftStopCommand;
 import space.battle.core.entity.Ship;
 import space.battle.core.entity.UObject;
 import space.battle.core.exception.CommandException;
