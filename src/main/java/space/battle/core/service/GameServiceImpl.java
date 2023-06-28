@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class GameServiceImpl implements GameService {
 
-    private final String jwtIssuer = "auth-service";
+    public static final String jwtIssuer = "auth-service";
     private final JWTVerifier verifier = JWT.require(Algorithm.HMAC256(jwtIssuer))
             .withIssuer(jwtIssuer)
             .build();

@@ -13,18 +13,18 @@ import java.util.function.Supplier;
 public class Game implements Runnable {
 
     public CountDownLatch countDownLatch;
-    private final BlockingQueue<Command> commands;
-    private final ExceptionHandler handler;
-    private Supplier<Boolean> stoppedFunction;
-    private Thread currentThread;
-    private final int id;
-    private final List<String> userNames;
+    protected final BlockingQueue<Command> commands;
+    protected final ExceptionHandler handler;
+    protected Supplier<Boolean> stoppedFunction;
+    protected Thread currentThread;
+    protected final int id;
+    protected final List<Scope> scopes;
 
-    public Game(BlockingQueue<Command> commands, ExceptionHandler handler, int id, List<String> userNames) {
+    public Game(BlockingQueue<Command> commands, ExceptionHandler handler, int id, List<Scope> scopes) {
         this.commands = commands;
         this.handler = handler;
         this.id = id;
-        this.userNames = userNames;
+        this.scopes = scopes;
     }
 
     public void setStoppedFunction(Supplier<Boolean> stoppedFunction) {
@@ -51,8 +51,8 @@ public class Game implements Runnable {
         return id;
     }
 
-    public List<String> getUserNames() {
-        return userNames;
+    public List<Scope> getScopes() {
+        return scopes;
     }
 
     @Override
