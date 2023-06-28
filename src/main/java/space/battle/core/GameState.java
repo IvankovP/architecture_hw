@@ -11,10 +11,10 @@ import java.util.concurrent.BlockingQueue;
 
 public class GameState extends Game implements Runnable {
 
-    private State state;
+    private final State state;
 
-    public GameState(BlockingQueue<Command> commands, ExceptionHandler handler, int id, List<String> userNames, State state) {
-        super(commands, handler, id, userNames);
+    public GameState(BlockingQueue<Command> commands, ExceptionHandler handler, int id, List<Scope> scopes, State state) {
+        super(commands, handler, id, scopes);
         this.state = state;
     }
 

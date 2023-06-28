@@ -16,7 +16,7 @@ import space.battle.core.exception.ExceptionHandler;
 import space.battle.core.exception.LogCommandHandler;
 import space.battle.core.service.ZoneService;
 import space.battle.core.support.Vector;
-import space.battle.core.zone.Zone;
+import space.battle.core.support.Zone;
 
 import java.util.*;
 import java.util.concurrent.BlockingQueue;

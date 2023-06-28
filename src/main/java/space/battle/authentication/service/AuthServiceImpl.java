@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.stereotype.Service;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,7 +22,7 @@ public class AuthServiceImpl implements AuthService {
                 .withClaim("gameId", id)
                 .withClaim("userName", userName)
                 .withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 86400L))
+                .withExpiresAt(new Date().toInstant().plus(365, ChronoUnit.DAYS))
                 .withJWTId(UUID.randomUUID().toString())
                 .withNotBefore(new Date())
                 .sign(algorithm);

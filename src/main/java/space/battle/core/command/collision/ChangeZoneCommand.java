@@ -3,7 +3,7 @@ package space.battle.core.command.collision;
 import space.battle.core.Game;
 import space.battle.core.command.Command;
 import space.battle.core.entity.UObject;
-import space.battle.core.zone.Zone;
+import space.battle.core.support.Zone;
 
 import java.util.ArrayList;
 import java.util.List;

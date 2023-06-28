@@ -1,7 +1,6 @@
-package space.battle.core.zone;
+package space.battle.core.support;
 
 import space.battle.core.entity.UObject;
-import space.battle.core.support.Vector;
 
 import java.util.HashSet;
 import java.util.Objects;

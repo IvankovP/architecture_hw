@@ -13,10 +13,7 @@ import space.battle.core.exception.CommandExceptionHandler;
 import space.battle.core.service.GameService;
 import space.battle.core.service.GameServiceImpl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,7 +37,7 @@ class GameServiceTest {
 
     private Game createGame(int id) {
         LinkedBlockingQueue<Command> commands = new LinkedBlockingQueue<>();
-        return new Game(commands, new CommandExceptionHandler(commands, new HashMap<>()), id, Arrays.asList("Test","Test2","Test3"));
+        return new Game(commands, new CommandExceptionHandler(commands, new HashMap<>()), id, Collections.emptyList());
     }
 
     @Test
