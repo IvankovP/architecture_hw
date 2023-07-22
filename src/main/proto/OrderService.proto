@@ -1,0 +1,28 @@
+syntax = "proto3";
+package chat.bot.core.grpc;
+
+message CreateOrderRequest {
+  string clientName = 1;
+  repeated OrderItem positions = 2;
+}
+
+message CreateOrderResponse {
+  int32 orderNumber = 1;
+}
+
+message OrderItem {
+  string name = 1;
+  int32 count = 2;
+}
+
+message DeleteOrderRequest {
+  int32 orderNumber = 1;
+}
+
+message DeleteOrderResponse {
+}
+
+service Order {
+  rpc create(CreateOrderRequest) returns (CreateOrderResponse);
+  rpc delete(DeleteOrderRequest) returns (DeleteOrderResponse);
+}
