@@ -1,4 +1,4 @@
-package space.battle.core.command.action;
+package space.battle.core.command.support;
 
 import space.battle.core.Game;
 import space.battle.core.command.Command;
