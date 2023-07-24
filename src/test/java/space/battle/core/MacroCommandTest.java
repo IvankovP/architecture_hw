@@ -12,6 +12,7 @@ import space.battle.core.command.action.CheckFuelCommand;
 import space.battle.core.command.action.MoveCommand;
 import space.battle.core.command.action.RotateCommand;
 import space.battle.core.command.macro.MacroCommand;
+import space.battle.core.command.*;
 import space.battle.core.entity.Ship;
 import space.battle.core.entity.UObject;
 import space.battle.core.exception.CommandException;
